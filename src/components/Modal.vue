@@ -1,5 +1,5 @@
 <template>
-  <div class="backdrop" @click="closeModal">
+  <div class="backdrop" @click.self="closeModal">
     <div class="modal" :class="{sale:theme === 'sale'}">
       <h1>{{header}}</h1>
       <p>{{text}}</p>
@@ -32,7 +32,7 @@
     margin: 5rem auto;
     background: white;
     border-radius: .25rem;
-    box-shadow: 1px 1px 4px -1px grey;
+    box-shadow: 0px 2px 12px 2px hsl(0deg 0% 0% / 45%);
     cursor: pointer;
   }
 
