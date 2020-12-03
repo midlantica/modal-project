@@ -1,15 +1,43 @@
 <template>
+
   <h1>{{ title }}</h1>
+  <p>{{ header }}</p>
+
   <input type="text" ref="name">
   <button @click.prevent="handleClick">Click me!</button>
 
-  <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
-  </div>
+  <teleport to=".modals" v-if="showModal">
+    <Modal theme="sale" @close="toggleModal">
+      <h1>Hey Ninja :)</h1>
+      <p>Grab your swag yeehaw!</p>
+      <hr>
+      <template v-slot:links>
+        <div>
+          <h4>Links</h4>
+          <a href="#">Sign up</a>  |  <a href="#">Login</a>
+        </div>
+      </template>
+    </Modal>
+  </teleport>
+
+  <teleport to=".modals" v-if="showModalTwo">
+    <Modal theme="sale" @close="toggleModalTwo">
+      <h1>Hey Ninja :) Two</h1>
+      <p>Grab your swag yeehaw!</p>
+      <hr>
+      <template v-slot:links>
+        <div>
+          <h4>Links Two</h4>
+          <a href="#">Sign up</a>  |  <a href="#">Login</a>
+        </div>
+      </template>
+    </Modal>
+  </teleport>
 
   <br><br>
   <div>
     <button @click="toggleModal">Open Modal</button>
+    <button @click="toggleModalTwo">Open Modal Two</button>
   </div>
 </template>
 
@@ -24,7 +52,8 @@ export default {
       title: "Drew is a fun guy :)",
       header:"Sign up for the Giveaway",
       text: "Grab the giveaway for half price!",
-      showModal: false
+      showModal: false,
+      showModalTwo: false
     }
   },
   methods: {
@@ -35,13 +64,16 @@ export default {
     },
     toggleModal() {
       this.showModal = !this.showModal
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
 </script>
 
 <style>
-  #app {
+  #app, .modals {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
