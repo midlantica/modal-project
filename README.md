@@ -1,5 +1,6 @@
 # modal-project
 
+![Preview](./image.png)
 ## Project setup
 ```
 npm install
